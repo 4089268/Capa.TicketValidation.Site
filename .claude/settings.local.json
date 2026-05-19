@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx create-next-app@latest . --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --yes)",
+      "Bash(npx create-next-app@latest . --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --skip-install)",
+      "Bash(curl -s \"http://localhost:3001/ticket?empresa=Mi+Empresa+SA&nombre=Juan+P%C3%A9rez&concepto=Pago+de+Servicios&monto=1500.00&fecha=2024-01-15&hora=14:30&estado=pagado&ref=TKT-001&folio=F-0042&rfc=MEM010101ABC\")",
+      "Bash(awk '{print $2}')",
+      "Bash(xargs -I{} ps -p {} -o pid,command=)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3001/)"
+    ]
+  }
+}
