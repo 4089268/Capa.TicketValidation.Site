@@ -10,6 +10,8 @@ export interface TicketData {
   monto: number;
   folio: string;
   hash: string;
+  idOficina?: string;
+  rfc?: string;
 }
 
 function formatMonto(monto: number) {
@@ -74,6 +76,8 @@ export function TicketCard({
   monto,
   folio,
   hash,
+  idOficina,
+  rfc,
 }: TicketData) {
   const [showModal, setShowModal] = useState(false);
 
@@ -98,9 +102,11 @@ export function TicketCard({
         {/* Data rows */}
         <div className="space-y-3">
           <Row label="Folio" value={folio} />
+          {idOficina && <Row label="Oficina" value={idOficina} />}
           <Row label="Cuenta" value={cuenta} />
           <Row label="Fecha" value={formatFecha(fecha)} />
           <Row label="Cliente" value={nombre} />
+          {rfc && <Row label="RFC" value={rfc} />}
         </div>
 
         <Divider />
@@ -129,7 +135,7 @@ export function TicketCard({
 
         {/* Hash */}
         <div className="text-center py-2">
-          <p className="text-xs text-gray-400 mb-1">Hash de Validación</p>
+          <p className="text-xs text-gray-400 mb-1">Firma digital</p>
           <p className="text-xs text-gray-600 font-mono break-all">{hash}</p>
         </div>
 

@@ -22,6 +22,10 @@ export default async function TicketPage({ searchParams }: { searchParams: Searc
 
   const montoRaw = parseFloat(getString(params.t, "0"));
   const fechaRaw = getString(params.f, new Date().toISOString().split("T")[0]);
+  const rfcRaw = getString(params.s, "");
+
+  // Si RFC es "-", tratarlo como no disponible
+  const rfc = rfcRaw === "-" ? undefined : rfcRaw || undefined;
 
   const ticketData: TicketData = {
     nombre: getString(params.n, "Cliente"),
@@ -30,6 +34,8 @@ export default async function TicketPage({ searchParams }: { searchParams: Searc
     monto: isNaN(montoRaw) ? 0 : montoRaw,
     folio: getString(params.i, ""),
     hash: getString(params.h, ""),
+    idOficina: getString(params.o, "") || undefined,
+    rfc: rfc,
   };
 
   return (
