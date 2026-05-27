@@ -3,7 +3,7 @@ import Link from "next/link";
 import { QRScanner } from "@/components/QRScanner";
 
 const DEMO_URL =
-  "/ticket?n=Mi+Empresa+SA&c=0001&f=20250518&t=1500.00&i=TKT-2024-0042&h=abc123xyz&estado=pagado";
+  "/qr?n=Mi+Empresa+SA&c=0001&f=20250518&t=1500.00&i=TKT-2024-0042&h=abc123xyz&estado=pagado";
 
 export default function Home() {
   return (
@@ -31,21 +31,6 @@ export default function Home() {
         <div className="bg-gray-50 rounded-lg p-6 border border-gray-200">
           <QRScanner />
         </div>
-
-        {/* Divider */}
-        <div className="flex items-center gap-4">
-          <div className="flex-1 border-t border-gray-300"></div>
-          <span className="text-xs text-gray-500 font-medium uppercase tracking-wider">o</span>
-          <div className="flex-1 border-t border-gray-300"></div>
-        </div>
-
-        {/* Demo Button */}
-        <Link
-          href={DEMO_URL}
-          className="block w-full bg-[#af0039] hover:bg-[#8b0031] text-white py-3 rounded-lg text-sm font-semibold transition-all duration-300 shadow-md hover:shadow-lg"
-        >
-          Ver Comprobante de Demostración
-        </Link>
 
         {/* Footer Text */}
         <p className="text-xs text-gray-500 pt-2">

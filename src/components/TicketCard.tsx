@@ -150,12 +150,12 @@ export function TicketCard({
 
       {/* Modal */}
       {showModal && (
-        <div className="fixed inset-0 bg-black/75 bg-opacity-10 flex items-center justify-center z-50">
+        <div className="modal-overlay fixed inset-0 bg-black/75 bg-opacity-10 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg p-8 max-w-md mx-4 shadow-2xl">
-            <h2 className="text-xl font-bold text-gray-900 mb-4">Generar Factura</h2>
+            <h2 className="text-xl font-bold text-gray-900 mb-4 text-center">Generar Factura</h2>
             <div className="flex flex-col items-center gap-4 mb-6">
               <div className="animate-spin">
-                <svg className="w-12 h-12 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-12 h-12 text-[#af0039]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" fill="none" opacity="0.2"></circle>
                   <path d="M12 2A10 10 0 0 1 22 12" strokeLinecap="round" strokeWidth="2"></path>
                 </svg>
