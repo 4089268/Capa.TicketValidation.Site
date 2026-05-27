@@ -17,7 +17,7 @@ npm run lint     # ESLint check
 
 **Key pages**:
 - `/` — Home: Logo + description + QR scanner entry point
-- `/ticket?n=…&c=…&f=…&t=…&i=…&h=…` — Receipt display page
+- `/qr?n=…&c=…&f=…&t=…&i=…&h=…` — Receipt display page
 
 **URL parameter schema** (passed from QR):
 ```
@@ -38,7 +38,7 @@ h  → hash (validation hash)
 
 ### Data Flow
 1. User scans QR → QRScanner captures URL string
-2. Router navigates to `/ticket?...` with encoded params
+2. Router navigates to `/qr?...` with encoded params
 3. Server component (page.tsx) parses params, formats dates
 4. TicketCard renders receipt with modal for "Generar Factura"
 
@@ -48,7 +48,7 @@ h  → hash (validation hash)
 | `src/app/page.tsx` | Home: logo + QR scanner |
 | `src/components/QRScanner.tsx` | html5-qrcode wrapper, camera input |
 | `src/components/TicketCard.tsx` | Receipt UI, modal, data display |
-| `src/app/ticket/page.tsx` | URL param parsing, TicketData preparation |
+| `src/app/qr/page.tsx` | URL param parsing, TicketData preparation |
 
 ## Conventions & Patterns
 
