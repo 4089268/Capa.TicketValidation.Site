@@ -126,7 +126,7 @@ export function TicketCard({
 
         {/* Data rows */}
         <div className="space-y-3">
-          {oficinaNombre && <RowTitle label="Oficina" value={oficinaNombre} />}
+          {oficinaNombre && <RowTitle value={oficinaNombre} />}
           <Row label="Folio" value={folio} />
           <Row label="Cuenta" value={cuenta} />
           <Row label="Fecha" value={formatFecha(fecha)} />
