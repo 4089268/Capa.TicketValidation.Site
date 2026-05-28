@@ -12,6 +12,7 @@ export interface TicketData {
   hash: string;
   idOficina?: string;
   rfc?: string;
+  hashValid?: boolean;
 }
 
 function formatMonto(monto: number) {
@@ -78,6 +79,7 @@ export function TicketCard({
   hash,
   idOficina,
   rfc,
+  hashValid,
 }: TicketData) {
   const [showModal, setShowModal] = useState(false);
 
@@ -121,15 +123,24 @@ export function TicketCard({
 
         <Divider />
 
-        {/* Generar Factura Button */}
-        <div className="flex justify-center py-2">
-          <button
-            onClick={() => setShowModal(true)}
-            className="inline-flex items-center px-6 py-2 rounded-lg bg-[#af0039] text-white font-semibold text-sm hover:bg-[#8b0031] transition-all duration-300 shadow-md hover:shadow-lg"
-          >
-            Generar Factura en Línea
-          </button>
-        </div>
+        {/* Generar Factura Button o Alerta de Inválido */}
+        {hashValid === false ? (
+          <div className="flex justify-center py-2">
+            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg text-sm text-center">
+              ⚠️ <strong>Ticket Inválido</strong>
+              <p className="mt-2 text-xs">La firma digital no coincide. Este comprobante no es auténtico.</p>
+            </div>
+          </div>
+        ) : (
+          <div className="flex justify-center py-2">
+            <button
+              onClick={() => setShowModal(true)}
+              className="inline-flex items-center px-6 py-2 rounded-lg bg-[#af0039] text-white font-semibold text-sm hover:bg-[#8b0031] transition-all duration-300 shadow-md hover:shadow-lg"
+            >
+              Generar Factura en Línea
+            </button>
+          </div>
+        )}
 
         <Divider />
 
