@@ -81,7 +81,20 @@ export function TicketCard({
   rfc,
   hashValid,
 }: TicketData) {
-  const [showModal, setShowModal] = useState(false);
+  const [isRedirecting, setIsRedirecting] = useState(false);
+
+  const handleGenerarFactura = () => {
+    setIsRedirecting(true);
+
+    // Construir URL
+    const host = process.env.NEXT_PUBLIC_FACTURA_HOST || "https://arquoscrm.sytes.net:5002/capa/facturar";
+    const url = rfc ? `${host}/${idOficina}/${folio}/${rfc}` : `${host}/${idOficina}/${folio}`;
+
+    // Redirigir después de 2 segundos
+    setTimeout(() => {
+      window.location.href = url;
+    }, 2000);
+  };
 
   return (
     <div className="ticket-card w-full max-w-sm bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
@@ -134,7 +147,7 @@ export function TicketCard({
         ) : (
           <div className="flex justify-center py-2">
             <button
-              onClick={() => setShowModal(true)}
+              onClick={() => handleGenerarFactura()}
               className="inline-flex items-center px-6 py-2 rounded-lg bg-[#af0039] text-white font-semibold text-sm hover:bg-[#8b0031] transition-all duration-300 shadow-md hover:shadow-lg"
             >
               Generar Factura en Línea
@@ -165,8 +178,8 @@ export function TicketCard({
         <CutLine />
       </div>
 
-      {/* Modal */}
-      {showModal && (
+      {/* Modal - Redirección a Facturación */}
+      {isRedirecting && (
         <div className="modal-overlay fixed inset-0 bg-black/75 bg-opacity-10 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg p-8 max-w-md mx-4 shadow-2xl">
             <h2 className="text-xl font-bold text-gray-900 mb-4 text-center">Generar Factura</h2>
@@ -177,19 +190,13 @@ export function TicketCard({
                   <path d="M12 2A10 10 0 0 1 22 12" strokeLinecap="round" strokeWidth="2"></path>
                 </svg>
               </div>
-              <p className="text-gray-600 text-center">
-                Esta funcionalidad se encuentra en proceso de desarrollo.
+              <p className="text-gray-600 text-center font-semibold">
+                Redireccionando a facturación...
               </p>
               <p className="text-sm text-gray-500 text-center">
-                Pronto podrás generar facturas en línea desde aquí.
+                Serás redireccionado en unos momentos
               </p>
             </div>
-            <button
-              onClick={() => setShowModal(false)}
-              className="w-full py-2 rounded-lg bg-[#af0039] text-white font-semibold hover:bg-[#8b0031] transition-all duration-300"
-            >
-              Cerrar
-            </button>
           </div>
         </div>
       )}
