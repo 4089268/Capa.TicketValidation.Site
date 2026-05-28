@@ -11,6 +11,7 @@ export interface TicketData {
   folio: string;
   hash: string;
   idOficina?: string;
+  oficinaNombre?: string;
   rfc?: string;
   hashValid?: boolean;
 }
@@ -70,6 +71,14 @@ function Row({ label, value }: { label: string; value: string }) {
   );
 }
 
+function RowTitle({ value }: { value: string }) {
+  return (
+    <div className="flex justify-center items-center gap-4 text-sm">
+      <span className="text-gray-800 font-semibold text-right">{value}</span>
+    </div>
+  );
+}
+
 export function TicketCard({
   nombre,
   cuenta,
@@ -78,6 +87,7 @@ export function TicketCard({
   folio,
   hash,
   idOficina,
+  oficinaNombre,
   rfc,
   hashValid,
 }: TicketData) {
@@ -116,8 +126,8 @@ export function TicketCard({
 
         {/* Data rows */}
         <div className="space-y-3">
+          {oficinaNombre && <RowTitle label="Oficina" value={oficinaNombre} />}
           <Row label="Folio" value={folio} />
-          {idOficina && <Row label="Oficina" value={idOficina} />}
           <Row label="Cuenta" value={cuenta} />
           <Row label="Fecha" value={formatFecha(fecha)} />
           <Row label="Cliente" value={nombre} />

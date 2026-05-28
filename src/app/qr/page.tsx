@@ -1,5 +1,6 @@
 import { TicketCard, type TicketData } from "@/components/TicketCard";
 import { validateHash } from "@/lib/hashValidator";
+import { getOficinaNombre } from "@/lib/oficinas";
 
 type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>;
 
@@ -29,6 +30,7 @@ export default async function TicketPage({ searchParams }: { searchParams: Searc
 
   const nombre = getString(params.n, "Cliente");
   const idOficina = getString(params.o, "");
+  const oficinaNombre = idOficina ? getOficinaNombre(idOficina) : undefined;
   const cuenta = getString(params.c, "");
   const folio = getString(params.i, "");
   // Usar el monto exactamente como viene en la URL (con decimales)
@@ -58,6 +60,7 @@ export default async function TicketPage({ searchParams }: { searchParams: Searc
     folio: folio,
     hash: providedHash,
     idOficina: idOficina || undefined,
+    oficinaNombre: oficinaNombre,
     rfc: rfcDisplay,
     hashValid: hashValid,
   };
